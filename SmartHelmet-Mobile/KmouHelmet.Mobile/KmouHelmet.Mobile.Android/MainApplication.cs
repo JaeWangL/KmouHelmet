@@ -7,7 +7,7 @@ namespace KmouHelmet.Mobile.Droid
 {
     [Application(Debuggable = false)]
     [MetaData("com.google.android.maps.v2.API_KEY",
-        Value = AppSettings.GoogleMapsAndroidKey)]
+        Value = AppSettings.GoogleMapsApiKey)]
     public class MainApplication : Application
     {
         public MainApplication(IntPtr handle, JniHandleOwnership transer)

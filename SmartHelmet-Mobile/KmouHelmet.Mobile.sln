@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KmouHelmet.Mobile.iOS", "KmouHelmet.Mobile\KmouHelmet.Mobile.iOS\KmouHelmet.Mobile.iOS.csproj", "{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,16 @@ Global
 		{8A7D78CB-87F8-4885-942D-26A633C10888}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{8A7D78CB-87F8-4885-942D-26A633C10888}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{8A7D78CB-87F8-4885-942D-26A633C10888}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Debug|iPhone.Build.0 = Debug|iPhone
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Release|iPhone.ActiveCfg = Release|iPhone
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Release|iPhone.Build.0 = Release|iPhone
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{AC043B17-0F30-4A3A-BDC9-8999FE440DD6}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
