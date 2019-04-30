@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using KmouHelmet.Backend.Infrastructure;
 using KmouHelmet.Backend.Models;
@@ -29,6 +30,13 @@ namespace KmouHelmet.Backend.Repositories
                 .SingleOrDefaultAsync(d => d.Id == id);
 
             return device;
+        }
+
+        public async Task<List<DeviceModel>> GetListByAllAsync()
+        {
+            List<DeviceModel> devices = await _context.Devices.ToListAsync();
+
+            return devices;
         }
     }
 }

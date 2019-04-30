@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using KmouHelmet.Backend.Dtos;
 using KmouHelmet.Backend.Mappers;
@@ -36,6 +37,19 @@ namespace KmouHelmet.Backend.Controllers
             await _deviceRepo.AddSingleAsync(device);
 
             return CreatedAtAction(nameof(GetDeviceByIdAsync), new { id = device.Id }, device);
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<GetDeviceDto>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<List<GetDeviceDto>>> GetLocationsByAllAsync()
+        {
+            List<DeviceModel> devices = await _deviceRepo.GetListByAllAsync();
+            if (devices is null)
+            {
+                return NoContent();
+            }
+
+            return Ok(_mapperDtos.MapperToGetDto(devices));
         }
 
         [HttpGet("{id:int}")]

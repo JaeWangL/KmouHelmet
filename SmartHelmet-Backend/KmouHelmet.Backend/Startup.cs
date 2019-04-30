@@ -57,10 +57,10 @@ namespace KmouHelmet.Backend
             app.UseSignalR(r => r.MapHub<GpsHub>("/gpshub"));
 
             app.UseSwagger()
-              .UseSwaggerUI(c =>
-              {
-                  c.SwaggerEndpoint($"{ string.Empty }/swagger/v1/swagger.json", "KmouHelmet.API V1");
-              });
+                .UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint($"{ string.Empty }/swagger/v1/swagger.json", "KmouHelmet.API V1");
+                });
         }
     }
 }

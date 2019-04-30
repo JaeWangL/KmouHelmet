@@ -1,4 +1,5 @@
-﻿using KmouHelmet.Backend.Dtos;
+﻿using System.Collections.Generic;
+using KmouHelmet.Backend.Dtos;
 using KmouHelmet.Backend.Models;
 
 namespace KmouHelmet.Backend.Mappers
@@ -17,5 +18,17 @@ namespace KmouHelmet.Backend.Mappers
                 Id = device.Id,
                 StreamingUrl = device.StreamingUrl,
             };
+
+        public IEnumerable<GetDeviceDto> MapperToGetDto(IEnumerable<DeviceModel> devices)
+        {
+            var results = new List<GetDeviceDto>();
+
+            foreach (DeviceModel device in devices)
+            {
+                results.Add(MapperToGetDto(device));
+            }
+
+            return results;
+        }
     }
 }

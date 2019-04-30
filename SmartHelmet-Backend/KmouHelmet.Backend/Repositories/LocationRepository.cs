@@ -27,25 +27,25 @@ namespace KmouHelmet.Backend.Repositories
 
         public async Task<LocationModel> GetSingleByIdAsync(int id)
         {
-            LocationModel device = await _context.Locations
+            LocationModel location = await _context.Locations
                 .SingleOrDefaultAsync(d => d.Id == id);
 
-            return device;
+            return location;
         }
 
         public async Task<LocationModel> GetSingleByDeviceIdAsync(int deviceId)
         {
-            LocationModel device = await _context.Locations
+            LocationModel location = await _context.Locations
                 .SingleOrDefaultAsync(l => l.DeviceId == deviceId);
 
-            return device;
+            return location;
         }
 
         public async Task<List<LocationModel>> GetListByAllAsync()
         {
-            List<LocationModel> devices = await _context.Locations.ToListAsync();
+            List<LocationModel> locations = await _context.Locations.ToListAsync();
 
-            return devices;
+            return locations;
         }
 
         public async Task<LocationModel> PatchSingleAsync(LocationModel location, PatchLocationDto dto)

@@ -26,14 +26,14 @@ namespace KmouHelmet.Backend.Mappers
 
         public IEnumerable<GetLocationDto> MapperToGetDto(IEnumerable<LocationModel> locations)
         {
-            var products = new List<GetLocationDto>();
+            var results = new List<GetLocationDto>();
 
             foreach (LocationModel location in locations)
             {
-                products.Add(MapperToGetDto(location));
+                results.Add(MapperToGetDto(location));
             }
 
-            return products;
+            return results;
         }
     }
 }

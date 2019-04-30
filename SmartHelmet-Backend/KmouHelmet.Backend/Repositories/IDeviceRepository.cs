@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using KmouHelmet.Backend.Models;
 
 namespace KmouHelmet.Backend.Repositories
@@ -8,5 +9,7 @@ namespace KmouHelmet.Backend.Repositories
         Task<DeviceModel> AddSingleAsync(DeviceModel device);
 
         Task<DeviceModel> GetSingleByIdAsync(int id);
+
+        Task<List<DeviceModel>> GetListByAllAsync();
     }
 }
