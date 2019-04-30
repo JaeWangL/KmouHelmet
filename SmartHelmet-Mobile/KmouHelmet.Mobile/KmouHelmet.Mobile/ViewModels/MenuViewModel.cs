@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using KmouHelmet.Mobile.Dtos;
-using KmouHelmet.Mobile.Services.Location;
+using KmouHelmet.Mobile.Services.Device;
 using MvvmHelpers;
 using OperationResult;
 using Xamarin.Forms;
@@ -10,27 +10,27 @@ namespace KmouHelmet.Mobile.ViewModels
 {
     public class MenuViewModel : BaseViewModel
     {
-        readonly ILocationService _locationService;
+        readonly IDeviceService _deviceService;
 
         public MenuViewModel()
         {
-            _locationService = DependencyService.Get<ILocationService>();
+            _deviceService = DependencyService.Get<IDeviceService>();
         }
 
         public override async Task InitializeAsync()
         {
             await base.InitializeAsync();
 
-            Result<IEnumerable<LocationDto>> locationsResult =
-                await TryExecuteWithLoadingIndicatorsAsync(_locationService.GetAllLocationsAsync());
+            Result<IEnumerable<DeviceDto>> devicesResult =
+                await TryExecuteWithLoadingIndicatorsAsync(_deviceService.GetAllDevicesAsync());
 
-            if (locationsResult)
+            if (devicesResult)
             {
-                Locations.ReplaceRange(locationsResult.Value);
+                Devices.ReplaceRange(devicesResult.Value);
             }
         }
 
-        public ObservableRangeCollection<LocationDto> Locations { get; } =
-            new ObservableRangeCollection<LocationDto>();
+        public ObservableRangeCollection<DeviceDto> Devices { get; } =
+            new ObservableRangeCollection<DeviceDto>();
     }
 }

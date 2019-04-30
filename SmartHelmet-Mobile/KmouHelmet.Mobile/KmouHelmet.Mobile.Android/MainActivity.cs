@@ -6,6 +6,7 @@ using Plugin.Permissions;
 using Xamarin;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using XF.Material.Droid;
 
 namespace KmouHelmet.Mobile.Droid
 {
@@ -27,9 +28,12 @@ namespace KmouHelmet.Mobile.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
+            Material.Init(this, savedInstanceState);
 
             LoadApplication(new App());
         }
+
+        public override void OnBackPressed() => Material.HandleBackButton(base.OnBackPressed);
 
         public override void OnRequestPermissionsResult(
             int requestCode,

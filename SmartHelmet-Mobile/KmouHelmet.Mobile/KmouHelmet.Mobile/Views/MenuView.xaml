@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <views:BaseContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:templates="clr-namespace:KmouHelmet.Mobile.Views.Templates"
     xmlns:viewmodels="clr-namespace:KmouHelmet.Mobile.ViewModels"
     xmlns:views="clr-namespace:KmouHelmet.Mobile.Views"
     x:Class="KmouHelmet.Mobile.Views.MenuView"
@@ -9,10 +10,21 @@
     x:TypeArguments="viewmodels:MenuViewModel"
     Title=" ">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <AbsoluteLayout
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <ListView x:Name="DeviceList"
+                AbsoluteLayout.LayoutFlags="All" 
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="False"
+                RowHeight="70"
+                SeparatorVisibility="None"
+                ItemsSource="{Binding Devices}">
+                <ListView.ItemTemplate>
+                    <templates:LocationItemTemplate />
+                </ListView.ItemTemplate>
+            </ListView>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </views:BaseContentPage>

@@ -40,4 +40,8 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Templates\" />
+    <Folder Include="Services\Device\" />
+  </ItemGroup>
 </Project>

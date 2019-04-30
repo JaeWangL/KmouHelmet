@@ -1,4 +1,5 @@
-﻿using KmouHelmet.Mobile.Services.Location;
+﻿using KmouHelmet.Mobile.Services.Device;
+using KmouHelmet.Mobile.Services.Location;
 using KmouHelmet.Mobile.Services.Request;
 using KmouHelmet.Mobile.Views;
 using Xamarin.Forms;
@@ -35,6 +36,7 @@ namespace KmouHelmet.Mobile
 
         private void RegisterServicesAndProviders()
         {
+            DependencyService.Register<IDeviceService, DeviceService>();
             DependencyService.Register<ILocationService, LocationService>();
             DependencyService.Register<IRequestService, RequestService>();
         }

@@ -15,8 +15,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
@@ -119,7 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KmouHelmet.Mobile\KmouHelmet.Mobile.csproj">
-      <Project>{2A35D720-6CC6-4DEC-85E5-5B6B696CF48D}</Project>
+      <Project>{8A7D78CB-87F8-4885-942D-26A633C10888}</Project>
       <Name>KmouHelmet.Mobile</Name>
     </ProjectReference>
   </ItemGroup>

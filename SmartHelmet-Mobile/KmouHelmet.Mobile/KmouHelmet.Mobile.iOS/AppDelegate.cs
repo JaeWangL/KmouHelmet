@@ -23,6 +23,13 @@ namespace KmouHelmet.Mobile.iOS
 
             LoadApplication(new App());
 
+            UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
+            UINavigationBar.Appearance.ShadowImage = new UIImage();
+            UINavigationBar.Appearance.BackgroundColor = UIColor.Clear;
+            UINavigationBar.Appearance.TintColor = UIColor.White;
+            UINavigationBar.Appearance.BarTintColor = UIColor.Clear;
+            UINavigationBar.Appearance.Translucent = true;
+
             return base.FinishedLaunching(app, options);
         }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataTemplate
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="KmouHelmet.Mobile.Views.Templates.LocationItemTemplate">
+    <ViewCell>
+        <Grid
+            ColumnSpacing="0"
+            RowSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <BoxView
+                Grid.Column="0"
+                HeightRequest="50"
+                WidthRequest="50"
+                Margin="25, 10"
+                VerticalOptions="Center"
+                BackgroundColor="Black" />
+            <Label
+                Grid.Column="1"
+                VerticalOptions="Center"
+                Margin="25, 0, 0, 0"
+                Text="{Binding DeviceId}" />
+        </Grid>
+    </ViewCell>
+</DataTemplate>
+
