@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Styles\map_style.json" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Styles\AppStyles.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -43,5 +46,8 @@
   <ItemGroup>
     <Folder Include="Views\Templates\" />
     <Folder Include="Services\Device\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Styles\map_style.json" />
   </ItemGroup>
 </Project>

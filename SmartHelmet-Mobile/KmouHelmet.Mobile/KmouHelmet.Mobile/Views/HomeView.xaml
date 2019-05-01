@@ -3,30 +3,21 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
     xmlns:viewmodels="clr-namespace:KmouHelmet.Mobile.ViewModels"
     xmlns:views="clr-namespace:KmouHelmet.Mobile.Views"
     x:Class="KmouHelmet.Mobile.Views.HomeView"
-    x:TypeArguments="viewmodels:HomeViewModel">
-    <ContentPage.Content>
+    x:TypeArguments="viewmodels:HomeViewModel"
+    Title="Home"
+    BackgroundColor="{StaticResource PrimaryPurpleColor}">
+    <views:BaseContentPage.Content>
         <Grid>
             <Grid
                 ColumnSpacing="0"
                 RowSpacing="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="50" />
-                </Grid.RowDefinitions>
-
-                <!--
-                    # Initial CameraUpdate
-                    Location = Lat, Lon
-                    Zoom = 17
-                    Rotation = 0
-                    Tilt = 0
-                -->
-                <maps:Map
-                    Grid.Row="0"
+                <maps:Map x:Name="MainMap"
                     ItemsSource="{Binding Pins}"
+                    SelectedPin="{Binding SelPin}"
                     InitialCameraUpdate="35.07441400, 129.08725000, 17, 0, 0">
                     <maps:Map.ItemTemplate>
                         <DataTemplate>
@@ -36,15 +27,75 @@
                         </DataTemplate>
                     </maps:Map.ItemTemplate>
                 </maps:Map>
-                <Button
-                    Grid.Row="1"
-                    Command="{Binding SendCommand}"
-                    Text="Send Test Data" />
+                
+                <material:MaterialCard
+                    CornerRadius="5"
+                    Elevation="5"
+                    Padding="10"
+                    Margin="10"
+                    HeightRequest="120"
+                    VerticalOptions="End"
+                    BackgroundColor="{StaticResource PrimaryBlackColor}">
+                    <Grid
+                        ColumnSpacing="0"
+                        RowSpacing="0"
+                        HeightRequest="100">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        
+                        <Grid
+                            Grid.Row="0"
+                            ColumnSpacing="0"
+                            RowSpacing="0"
+                            Margin="6, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
+                            
+                            <BoxView
+                                Grid.Column="0"
+                                Grid.RowSpan="2"
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                HorizontalOptions="Center"
+                                Color="Red" />
+                            
+                            <material:MaterialLabel
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Margin="6, 6, 0, 0"
+                                TypeScale="Subtitle2"
+                                TextColor="White"
+                                Text="{Binding SelDeviceId}" />
+                            <material:MaterialLabel
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Margin="6, 0, 0, 0"
+                                TypeScale="Caption"
+                                TextColor="Aqua"
+                                Text="{Binding SelPosition}" />
+                        </Grid>
+                        
+                        <material:MaterialButton
+                            Grid.Row="1"
+                            BackgroundColor="White"
+                            VerticalOptions="End"
+                            Text="View Camera Streaming"
+                            TextColor="{StaticResource PrimaryBlackColor}" />
+                    </Grid>
+                </material:MaterialCard>
             </Grid>
 
             <ActivityIndicator
                 IsRunning="{Binding IsBusy}"
                 IsVisible="{Binding IsBusy}" />
         </Grid>
-    </ContentPage.Content>
+    </views:BaseContentPage.Content>
 </views:BaseContentPage>

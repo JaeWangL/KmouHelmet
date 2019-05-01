@@ -2,9 +2,7 @@
 <NavigationPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:iOS="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    iOS:NavigationPage.IsNavigationBarTranslucent="True"
     x:Class="KmouHelmet.Mobile.Views.CustomNavigationView"
-    BarBackgroundColor="Transparent"
+    BarBackgroundColor="{StaticResource PrimaryPurpleColor}"
     BarTextColor="White">
 </NavigationPage>

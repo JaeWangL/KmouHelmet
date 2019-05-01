@@ -66,7 +66,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderers\CustomNavigationRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,7 +145,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\KmouHelmet.Mobile\KmouHelmet.Mobile.csproj">
-      <Project>{B7F36074-0A79-4959-B4A3-A1C0CE7EC16C}</Project>
+      <Project>{8A7D78CB-87F8-4885-942D-26A633C10888}</Project>
       <Name>KmouHelmet.Mobile</Name>
     </ProjectReference>
   </ItemGroup>

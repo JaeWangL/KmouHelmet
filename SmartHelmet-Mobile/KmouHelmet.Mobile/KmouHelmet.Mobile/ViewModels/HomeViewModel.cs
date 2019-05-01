@@ -17,6 +17,8 @@ namespace KmouHelmet.Mobile.ViewModels
     {
         readonly HubConnection _hubConnection;
         readonly ILocationService _locationService;
+        Pin _selPin;
+        string _selDeviceId, _selPosition;
         bool _isConnected;
         ObservableRangeCollection<LocationDto> _locations;
 
@@ -42,9 +44,9 @@ namespace KmouHelmet.Mobile.ViewModels
             {
                 var pin = new Pin()
                 {
-                    Type = PinType.Generic,
+                    Type = PinType.Place,
                     Label = data.DeviceId.ToString(),
-                    Position = new Position(data.Latitude, data.Longitude),
+                    Position = new Position(data.Latitude, data.Longitude)
                 };
                 Pins.Add(pin);
             });
@@ -64,13 +66,35 @@ namespace KmouHelmet.Mobile.ViewModels
                 {
                     var pin = new Pin()
                     {
-                        Type = PinType.Generic,
+                        Type = PinType.Place,
                         Label = location.DeviceId.ToString(),
-                        Position = new Position(location.Latitude, location.Longitude),
+                        Position = new Position(location.Latitude, location.Longitude)
                     };
                     Pins.Add(pin);
                 }
             }
+        }
+
+        public Pin SelPin
+        {
+            get => _selPin;
+            set
+            {
+                SetAndRaisePropertyChanged(ref _selPin, value);
+                UpdateSelectedPin();
+            }
+        }
+
+        public string SelDeviceId
+        {
+            get => _selDeviceId;
+            set => SetAndRaisePropertyChanged(ref _selDeviceId, value);
+        }
+
+        public string SelPosition
+        {
+            get => _selPosition;
+            set => SetAndRaisePropertyChanged(ref _selPosition, value);
         }
 
         public ObservableRangeCollection<Pin> Pins { get; } =
@@ -95,6 +119,13 @@ namespace KmouHelmet.Mobile.ViewModels
                 await _hubConnection.SendAsync("SendDataAsync", "8", "GPRMC,161006.425,A,7855.6020,S,13843.8900,E,154.89,84.62,110715,173.1,W,A*30");
             }
             catch { }
+        }
+
+        void UpdateSelectedPin()
+        {
+            SelDeviceId = "DeviceId: " + _selPin.Label;
+            SelPosition = 
+                $"Position: {_selPin.Position.Latitude.ToString()}, {_selPin.Position.Longitude.ToString()}";
         }
     }
 }
