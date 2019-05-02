@@ -149,4 +149,9 @@
       <Name>KmouHelmet.Mobile</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_pin1.png" />
+    <BundleResource Include="Resources\ic_pin2.png" />
+    <BundleResource Include="Resources\toolbar_menu.png" />
+  </ItemGroup>
 </Project>

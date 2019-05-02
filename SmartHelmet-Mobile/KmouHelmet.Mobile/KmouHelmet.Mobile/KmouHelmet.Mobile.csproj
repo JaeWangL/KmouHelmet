@@ -46,6 +46,7 @@
   <ItemGroup>
     <Folder Include="Views\Templates\" />
     <Folder Include="Services\Device\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Styles\map_style.json" />

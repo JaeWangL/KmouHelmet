@@ -65,7 +65,7 @@
                                 HeightRequest="50"
                                 WidthRequest="50"
                                 HorizontalOptions="Center"
-                                Color="Red" />
+                                Color="{Binding SelDeviceId, Converter={StaticResource DeviceColorConverter}}" />
                             
                             <material:MaterialLabel
                                 Grid.Column="1"

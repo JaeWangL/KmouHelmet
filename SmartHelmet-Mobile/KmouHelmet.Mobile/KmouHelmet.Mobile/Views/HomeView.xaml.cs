@@ -15,6 +15,27 @@ namespace KmouHelmet.Mobile.Views
 
             BindingContext = new HomeViewModel();
 
+            string json =
+                 "[\n" +
+                 "  {\n" +
+                 "    \"elementType\": \"labels\",\n" +
+                 "    \"stylers\": [\n" +
+                 "      {\n" +
+                 "        \"visibility\": \"off\"\n" +
+                 "      }\n" +
+                 "    ]\n" +
+                 "  },\n" +
+                 "  {\n" +
+                 "    \"featureType\": \"water\",\n" +
+                 "    \"elementType\": \"geometry.fill\",\n" +
+                 "    \"stylers\": [\n" +
+                 "      {\n" +
+                 "        \"color\": \"#4c4c4c\"\n" +
+                 "      }\n" +
+                 "    ]\n" +
+                 "  }" +
+ "]";
+            /*
             Assembly assembly = typeof(HomeView).GetTypeInfo().Assembly;
             Stream stream = assembly.GetManifestResourceStream("KmouHelmet.Mobile.Styles.map_style.json");
             string json = "";
@@ -22,6 +43,7 @@ namespace KmouHelmet.Mobile.Views
             {
                 json = reader.ReadToEnd();
             }
+            */
             MainMap.MapStyle = MapStyle.FromJson(json);
         }
     }

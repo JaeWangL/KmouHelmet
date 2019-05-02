@@ -8,14 +8,19 @@
     x:Class="KmouHelmet.Mobile.Views.MenuView"
     x:DataType="viewmodels:MenuViewModel"
     x:TypeArguments="viewmodels:MenuViewModel"
-    Title="Menu"
+    Title=" "
     BackgroundColor="{StaticResource PrimaryPurpleColor}">
-    <ContentPage.Content>
+    <views:BaseContentPage.Icon>
+        <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="iOS" Value="toolbar_menu" />
+        </OnPlatform>
+    </views:BaseContentPage.Icon>
+    <views:BaseContentPage.Content>
         <StackLayout>
             <Label
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Text="Not Implement yet" />
         </StackLayout>
-    </ContentPage.Content>
+    </views:BaseContentPage.Content>
 </views:BaseContentPage>
