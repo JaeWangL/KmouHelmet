@@ -16,7 +16,7 @@
                 ColumnSpacing="0"
                 RowSpacing="0">
                 <maps:Map x:Name="MainMap"
-                    ItemsSource="{Binding Pins}"
+                    ItemsSource="{Binding Pins, Mode=OneWay}"
                     SelectedPin="{Binding SelPin}"
                     InitialCameraUpdate="35.07441400, 129.08725000, 17, 0, 0">
                     <maps:Map.ItemTemplate>
@@ -88,7 +88,8 @@
                             BackgroundColor="White"
                             VerticalOptions="End"
                             Text="View Camera Streaming"
-                            TextColor="{StaticResource PrimaryBlackColor}" />
+                            TextColor="{StaticResource PrimaryBlackColor}"
+                            Command="{Binding SendCommand}" />
                     </Grid>
                 </material:MaterialCard>
             </Grid>

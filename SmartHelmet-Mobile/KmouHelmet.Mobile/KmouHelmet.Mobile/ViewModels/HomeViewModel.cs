@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using KmouHelmet.Mobile.Dtos;
@@ -7,6 +9,7 @@ using KmouHelmet.Mobile.Utils;
 using Microsoft.AspNetCore.SignalR.Client;
 using MvvmHelpers;
 using OperationResult;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using XF.Material.Forms.UI.Dialogs;
@@ -21,6 +24,7 @@ namespace KmouHelmet.Mobile.ViewModels
         string _selDeviceId = string.Empty, _selPosition;
         bool _isConnected;
         ObservableRangeCollection<LocationDto> _locations;
+        ObservableRangeCollection<Pin> _pins;
 
         public ICommand SendCommand => new AsyncCommand(SendAsync);
 
@@ -31,6 +35,7 @@ namespace KmouHelmet.Mobile.ViewModels
                 .Build();
             _locationService = DependencyService.Get<ILocationService>();
             _locations = new ObservableRangeCollection<LocationDto>();
+            _pins = new ObservableRangeCollection<Pin>();
 
             _hubConnection.Closed += async (error) =>
             {
@@ -42,7 +47,11 @@ namespace KmouHelmet.Mobile.ViewModels
 
             _hubConnection.On<GpsDto>("ReceivedData", (data) =>
             {
-                AddPin(data.DeviceId, data.Latitude, data.Longitude);
+                MainThread.BeginInvokeOnMainThread(() =>
+                {
+                    // AddPin(9, 35.075496, 129.087850); for test
+                    AddPin(data.DeviceId, data.Latitude, data.Longitude);
+                });
             });
         }
 
@@ -85,8 +94,11 @@ namespace KmouHelmet.Mobile.ViewModels
             set => SetAndRaisePropertyChanged(ref _selPosition, value);
         }
 
-        public ObservableRangeCollection<Pin> Pins { get; } =
-            new ObservableRangeCollection<Pin>();
+        public ObservableRangeCollection<Pin> Pins
+        {
+            get => _pins;
+            set => SetAndRaisePropertyChanged(ref _pins, value);
+        }
 
         public async Task ConnectAsync()
         {
@@ -106,20 +118,30 @@ namespace KmouHelmet.Mobile.ViewModels
                 await ConnectAsync();
                 await _hubConnection.SendAsync("SendDataAsync", "8", "GPRMC,161006.425,A,7855.6020,S,13843.8900,E,154.89,84.62,110715,173.1,W,A*30");
             }
-            catch { }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine("HomeViewModel.SendAsync: " + ex);
+            }
         }
 
         void AddPin(int deviceId, double latitude, double longitude)
         {
-            var pin = new Pin()
+            try
             {
-                Icon = deviceId == 9 ?
+                var pin = new Pin()
+                {
+                    Icon = deviceId == 9 ?
                     BitmapDescriptorFactory.DefaultMarker(Color.Blue) : BitmapDescriptorFactory.DefaultMarker(Color.Red),
-                Type = PinType.Place,
-                Label = deviceId.ToString(),
-                Position = new Position(latitude, longitude)
-            };
-            Pins.Add(pin);
+                    Type = PinType.Place,
+                    Label = deviceId.ToString(),
+                    Position = new Position(latitude, longitude)
+                };
+                Pins.Add(pin);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("HomeViewModel.AddPin: " + ex);
+            }
         }
 
         void UpdateSelectedPin()
