@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using KmouHelmet.Mobile.Dtos;
+using KmouHelmet.Mobile.Services.Device;
 using KmouHelmet.Mobile.Services.Location;
 using KmouHelmet.Mobile.Utils;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -19,6 +20,7 @@ namespace KmouHelmet.Mobile.ViewModels
     public class HomeViewModel : BaseViewModel
     {
         readonly HubConnection _hubConnection;
+        readonly IDeviceService _deviceService;
         readonly ILocationService _locationService;
         Pin _selPin;
         string _selDeviceId = string.Empty, _selPosition;
@@ -26,13 +28,14 @@ namespace KmouHelmet.Mobile.ViewModels
         ObservableRangeCollection<LocationDto> _locations;
         ObservableRangeCollection<Pin> _pins;
 
-        public ICommand SendCommand => new AsyncCommand(SendAsync);
+        public ICommand ViewCameraCommand => new AsyncCommand(ViewCameraAsync);
 
         public HomeViewModel()
         {
             _hubConnection = new HubConnectionBuilder()
                 .WithUrl($"{AppSettings.BackendEndPoint}gpshub")
                 .Build();
+            _deviceService = DependencyService.Get<IDeviceService>();
             _locationService = DependencyService.Get<ILocationService>();
             _locations = new ObservableRangeCollection<LocationDto>();
             _pins = new ObservableRangeCollection<Pin>();
@@ -111,12 +114,18 @@ namespace KmouHelmet.Mobile.ViewModels
             _isConnected = true;
         }
 
-        public async Task SendAsync()
+        public async Task ViewCameraAsync()
         {
             try
             {
-                await ConnectAsync();
-                await _hubConnection.SendAsync("SendDataAsync", "8", "GPRMC,161006.425,A,7855.6020,S,13843.8900,E,154.89,84.62,110715,173.1,W,A*30");
+                IsBusy = true;
+
+                Result<DeviceDto> deviceResult = await TryExecuteWithLoadingIndicatorsAsync(_deviceService.GetDeviceByIdAsync(Convert.ToInt32(SelDeviceId)));
+                await Browser.OpenAsync(deviceResult.Value.StreamingUrl, BrowserLaunchMode.SystemPreferred);
+                // await ConnectAsync();
+                // await _hubConnection.SendAsync("SendDataAsync", "8", "GPRMC,161006.425,A,7855.6020,S,13843.8900,E,154.89,84.62,110715,173.1,W,A*30");
+
+                IsBusy = false;
             }
             catch (Exception ex) 
             {

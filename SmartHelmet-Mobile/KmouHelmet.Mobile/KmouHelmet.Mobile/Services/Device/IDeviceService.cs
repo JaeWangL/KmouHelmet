@@ -7,5 +7,7 @@ namespace KmouHelmet.Mobile.Services.Device
     public interface IDeviceService
     {
         Task<IEnumerable<DeviceDto>> GetAllDevicesAsync();
+
+        Task<DeviceDto> GetDeviceByIdAsync(int deviceId);
     }
 }

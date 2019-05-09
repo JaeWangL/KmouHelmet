@@ -26,5 +26,15 @@ namespace KmouHelmet.Mobile.Services.Device
 
             return _requestService.GetAsync<IEnumerable<DeviceDto>>(uri);
         }
+
+        public Task<DeviceDto> GetDeviceByIdAsync(int deviceId)
+        {
+            var builder = new UriBuilder(AppSettings.BackendEndPoint);
+            builder.AppendToPath($"api/v1/Devices/{deviceId}");
+
+            var uri = builder.ToString();
+
+            return _requestService.GetAsync<DeviceDto>(uri);
+        }
     }
 }

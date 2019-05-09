@@ -89,7 +89,7 @@
                             VerticalOptions="End"
                             Text="View Camera Streaming"
                             TextColor="{StaticResource PrimaryBlackColor}"
-                            Command="{Binding SendCommand}" />
+                            Command="{Binding ViewCameraCommand}" />
                     </Grid>
                 </material:MaterialCard>
             </Grid>
