@@ -16,8 +16,9 @@ def getGpsData():
 
 def sendData():
     data = getGpsData()
-    if (data.startswith('$GPRMC')):
-        hub_connection.send("SendDataAsync", ["8", data])
+    dataString = str(data, 'utf-8')
+    if (dataString.startswith('$GPRMC')):
+        hub_connection.send("SendDataAsync", ["8", dataString])
 
 def main():
     schedule.every(2).seconds.do(sendData)
