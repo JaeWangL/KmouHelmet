@@ -154,4 +154,7 @@
     <BundleResource Include="Resources\ic_pin2.png" />
     <BundleResource Include="Resources\toolbar_menu.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_refresh.png" />
+  </ItemGroup>
 </Project>

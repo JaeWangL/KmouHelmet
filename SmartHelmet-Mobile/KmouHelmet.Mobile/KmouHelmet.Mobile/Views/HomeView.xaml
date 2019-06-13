@@ -27,7 +27,19 @@
                         </DataTemplate>
                     </maps:Map.ItemTemplate>
                 </maps:Map>
-                
+
+                <ImageButton
+                    Command="{Binding RefreshDataCommand}"
+                    Source="ic_refresh"
+                    CornerRadius="6"
+                    Aspect="AspectFit"
+                    BackgroundColor="LightGray"
+                    Margin="6"
+                    HeightRequest="22"
+                    WidthRequest="22"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start" />
+
                 <material:MaterialCard
                     CornerRadius="5"
                     Elevation="5"

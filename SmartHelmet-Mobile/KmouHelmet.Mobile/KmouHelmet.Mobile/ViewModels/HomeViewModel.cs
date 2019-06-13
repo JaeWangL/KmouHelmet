@@ -28,6 +28,7 @@ namespace KmouHelmet.Mobile.ViewModels
         ObservableRangeCollection<LocationDto> _locations;
         ObservableRangeCollection<Pin> _pins;
 
+        public ICommand RefreshDataCommand => new AsyncCommand(RefreshDataAsync);
         public ICommand ViewCameraCommand => new AsyncCommand(ViewCameraAsync);
 
         public HomeViewModel()
@@ -114,14 +115,31 @@ namespace KmouHelmet.Mobile.ViewModels
             _isConnected = true;
         }
 
+        public async Task RefreshDataAsync()
+        {
+            Pins.Clear();
+            Result<IEnumerable<LocationDto>> locationsResult =
+                await TryExecuteWithLoadingIndicatorsAsync(_locationService.GetAllLocationsAsync());
+
+            if (locationsResult)
+            {
+                _locations.ReplaceRange(locationsResult.Value);
+                foreach (LocationDto location in _locations)
+                {
+                    AddPin(location.DeviceId, location.Latitude, location.Longitude);
+                }
+            }
+        }
+
         public async Task ViewCameraAsync()
         {
             try
             {
                 IsBusy = true;
 
-                Result<DeviceDto> deviceResult = await TryExecuteWithLoadingIndicatorsAsync(_deviceService.GetDeviceByIdAsync(Convert.ToInt32(SelDeviceId)));
-                await Browser.OpenAsync(deviceResult.Value.StreamingUrl, BrowserLaunchMode.SystemPreferred);
+                DeviceDto test = await _deviceService.GetDeviceByIdAsync(Convert.ToInt32(_selPin.Label));
+                await Browser.OpenAsync(test.StreamingUrl, BrowserLaunchMode.SystemPreferred);
+               
                 // await ConnectAsync();
                 // await _hubConnection.SendAsync("SendDataAsync", "8", "GPRMC,161006.425,A,7855.6020,S,13843.8900,E,154.89,84.62,110715,173.1,W,A*30");
 
